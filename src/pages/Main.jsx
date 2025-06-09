@@ -11,10 +11,13 @@ function MainPage() {
   const LoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/login", {
-        id,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/login`,
+        {
+          id,
+          password,
+        }
+      );
 
       if (res.data.success) {
         if (res.data.isFirstLogin) {
