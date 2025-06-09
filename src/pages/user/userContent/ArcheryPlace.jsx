@@ -43,9 +43,12 @@ const ArcheryPlace = () => {
     }
     // 검색 결과
     try {
-      const res = await axios.get("/api/user/getArcheryList", {
-        params: { sidoCd, sggCd, state },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getArcheryList`,
+        {
+          params: { sidoCd, sggCd, state },
+        }
+      );
       if (res.data.success) {
         console.log(res.data.result);
         setArcheryList(res.data.result);
@@ -66,7 +69,10 @@ const ArcheryPlace = () => {
 
   const getSidoList = async () => {
     try {
-      const res = await axios.get("/api/user/getSidoList", {});
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getSidoList`,
+        {}
+      );
       if (res.data.success) {
         setSidoList(res.data.result);
       }
@@ -77,9 +83,12 @@ const ArcheryPlace = () => {
 
   const selectSido = async (e) => {
     try {
-      const res = await axios.get("/api/user/getSggList", {
-        params: { sidoCode: e.target.value },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getSggList`,
+        {
+          params: { sidoCode: e.target.value },
+        }
+      );
       if (res.data.success) {
         setSggList(res.data.result);
       }
@@ -95,9 +104,12 @@ const ArcheryPlace = () => {
     sggCd = sggCd.substr(0, 4);
 
     try {
-      const res = await axios.get("/api/user/getStateList", {
-        params: { sidoCd: sidoCd, sggCd: sggCd },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getStateList`,
+        {
+          params: { sidoCd: sidoCd, sggCd: sggCd },
+        }
+      );
       if (res.data.success) {
         setStateList(res.data.result);
       }

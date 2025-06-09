@@ -31,13 +31,16 @@ const RegistMember = ({ onClose }) => {
     }
 
     try {
-      await axios.post("/api/admin/registMember", {
-        name,
-        role,
-        handle,
-        memberNo,
-        password: "1234",
-      });
+      await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/registMember`,
+        {
+          name,
+          role,
+          handle,
+          memberNo,
+          password: "1234",
+        }
+      );
       setAlertInfo({
         show: true,
         message: "회원 등록이 완료되었습니다.",

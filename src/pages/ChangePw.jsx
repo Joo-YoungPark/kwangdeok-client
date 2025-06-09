@@ -20,7 +20,7 @@ const ChangePw = () => {
     }
 
     try {
-      await axios.post("/api/changePw", {
+      await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/changePw`, {
         memberId,
         newPassword,
       });

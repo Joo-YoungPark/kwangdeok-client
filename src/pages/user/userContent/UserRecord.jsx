@@ -67,10 +67,13 @@ function UserRecord() {
 
   const getMemberScore = async (startDate) => {
     try {
-      const res = await axios.post("/api/user/getMemberScore", {
-        id: localStorage.getItem("member_id"),
-        date: format(startDate, "yyyy-MM-dd"),
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getMemberScore`,
+        {
+          id: localStorage.getItem("member_id"),
+          date: format(startDate, "yyyy-MM-dd"),
+        }
+      );
 
       if (res.data.success) {
         displayScoreTable(res.data.result);
@@ -200,10 +203,13 @@ function UserRecord() {
     }
 
     try {
-      const res = await axios.post("/api/user/saveUserRecord", {
-        data,
-        member_id: localStorage.getItem("member_id"),
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/saveUserRecord`,
+        {
+          data,
+          member_id: localStorage.getItem("member_id"),
+        }
+      );
       if (res.data.success) {
         showAlert("저장되었습니다.");
         setStartDate(new Date());

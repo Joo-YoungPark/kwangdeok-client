@@ -80,9 +80,12 @@ function AdminMember() {
   /* 사원 리스트 불러오기 */
   const searchMemberList = async () => {
     try {
-      const res = await axios.get("/api/admin/getMemberList", {
-        params: { page, size, searchType, searchKeyword },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/getMemberList`,
+        {
+          params: { page, size, searchType, searchKeyword },
+        }
+      );
       if (res.data.success) {
         setMembers(res.data.members);
         setTotalCount(res.data.totalCount);
@@ -112,9 +115,12 @@ function AdminMember() {
       "정말 삭제하시겠습니까?",
       async () => {
         try {
-          const res = await axios.post("/api/admin/deleteMember", {
-            id: checked,
-          });
+          const res = await axios.post(
+            `${import.meta.env.VITE_APP_API_URL}/api/admin/deleteMember`,
+            {
+              id: checked,
+            }
+          );
           if (res.data.success) {
             showAlert("삭제되었습니다.");
             setChecked([]);
@@ -138,7 +144,10 @@ function AdminMember() {
     }
 
     try {
-      const res = await axios.post("/api/admin/getMemberInfo", { id: checked });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/getMemberInfo`,
+        { id: checked }
+      );
       if (res.data.success) {
         setEditModalOpen(true);
         setEditMemberData(res.data.member);

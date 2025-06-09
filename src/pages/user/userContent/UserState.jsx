@@ -97,12 +97,15 @@ function UserStat() {
       end.getDate();
 
     try {
-      const res = await axios.post("/api/user/getStatData1", {
-        memberId: localStorage.getItem("member_id"),
-        formattedList,
-        start,
-        end,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getStatData1`,
+        {
+          memberId: localStorage.getItem("member_id"),
+          formattedList,
+          start,
+          end,
+        }
+      );
       if (res.data.success) {
         const result1 = [];
         const result2 = [];

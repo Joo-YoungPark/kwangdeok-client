@@ -54,10 +54,13 @@ const MonthDataPop = ({ data, onClose }) => {
 
   const getMonthData = async () => {
     try {
-      const res = await axios.post("/api/admin/getMonthScore", {
-        id: data.id,
-        yearRange,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/getMonthScore`,
+        {
+          id: data.id,
+          yearRange,
+        }
+      );
       if (res.data.success) {
         setMonthData(res.data.list);
       }

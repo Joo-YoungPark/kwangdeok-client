@@ -43,14 +43,17 @@ const EditMember = ({ member, onClose }) => {
     }
 
     try {
-      await axios.post("/api/admin/editMember", {
-        id: member.member_id,
-        name,
-        role,
-        handle,
-        useyn,
-        memberNo,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/editMember`,
+        {
+          id: member.member_id,
+          name,
+          role,
+          handle,
+          useyn,
+          memberNo,
+        }
+      );
       setAlertInfo({
         show: true,
         message: "회원 수정이 완료되었습니다.",

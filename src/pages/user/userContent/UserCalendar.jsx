@@ -70,10 +70,13 @@ function UserCalendar() {
   /* 사용자 일정  */
   const displayCalendar = async (startDate) => {
     try {
-      const res = await axios.post("/api/user/getScheduleInfo", {
-        memberId: localStorage.getItem("member_id"),
-        startDate: format(startDate, "yyyy-MM-dd"),
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getScheduleInfo`,
+        {
+          memberId: localStorage.getItem("member_id"),
+          startDate: format(startDate, "yyyy-MM-dd"),
+        }
+      );
       if (res.data.success) {
         const mappedEvents = res.data.result.map((value) => ({
           id: value.cal_id,
@@ -121,13 +124,16 @@ function UserCalendar() {
 
     try {
       const safeEndDate = endDate || startDate;
-      const res = await axios.post("/api/user/saveCalendar", {
-        memberId: localStorage.getItem("member_id"),
-        title: newTitle,
-        startDate: format(startDate, "yyyy-MM-dd"),
-        endDate: format(safeEndDate, "yyyy-MM-dd"),
-        selectedColor,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/saveCalendar`,
+        {
+          memberId: localStorage.getItem("member_id"),
+          title: newTitle,
+          startDate: format(startDate, "yyyy-MM-dd"),
+          endDate: format(safeEndDate, "yyyy-MM-dd"),
+          selectedColor,
+        }
+      );
       if (res.data.success) {
         showAlert("저장되었습니다.");
       }
@@ -174,13 +180,16 @@ function UserCalendar() {
     );
 
     try {
-      const res = await axios.put("/api/user/modifyCalendar", {
-        id: modify.id,
-        title: newTitle,
-        startDate: format(startDate, "yyyy-MM-dd"),
-        endDate: format(endDate, "yyyy-MM-dd"),
-        selectedColor,
-      });
+      const res = await axios.put(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/modifyCalendar`,
+        {
+          id: modify.id,
+          title: newTitle,
+          startDate: format(startDate, "yyyy-MM-dd"),
+          endDate: format(endDate, "yyyy-MM-dd"),
+          selectedColor,
+        }
+      );
       if (res.data.success) {
         displayCalendar(startDate);
         showAlert("수정되었습니다.");
@@ -200,9 +209,12 @@ function UserCalendar() {
       "정말 삭제하시겠습니까?",
       async () => {
         try {
-          const res = await axios.delete("/api/user/deleteCalendar", {
-            data: { id: id },
-          });
+          const res = await axios.delete(
+            `${import.meta.env.VITE_APP_API_URL}/api/user/deleteCalendar`,
+            {
+              data: { id: id },
+            }
+          );
 
           if (res.data.success) {
             setCalendar((prev) => prev.filter((event) => event.id !== id));

@@ -55,7 +55,7 @@ function AdminRecord() {
   /* 사원 이름 목록 (사원이름, 사원 번호) */
   useEffect(() => {
     axios
-      .get("/api/admin/getMembersName")
+      .get(`${import.meta.env.VITE_APP_API_URL}/api/admin/getMembersName`)
       .then((res) => {
         if (res.data.success) {
           setNameOptions(res.data.members);
@@ -81,9 +81,12 @@ function AdminRecord() {
   const getTodaysRecord = async (date) => {
     date = format(date, "yyyy-MM-dd");
     try {
-      const res = await axios.post("/api/admin/getTodaysRecord", {
-        date: date,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/getTodaysRecord`,
+        {
+          date: date,
+        }
+      );
       if (res.data.success) {
         setTotaysScore(res.data.result);
       }
@@ -143,15 +146,18 @@ function AdminRecord() {
     }
 
     try {
-      await axios.post("/api/admin/saveRecord", {
-        date: format(date, "yyyy-MM-dd"),
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate(),
-        searchName,
-        avg,
-        memberId,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_APP_API_URL}/api/admin/saveRecord`,
+        {
+          date: format(date, "yyyy-MM-dd"),
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          day: date.getDate(),
+          searchName,
+          avg,
+          memberId,
+        }
+      );
       showAlert("등록되었습니다.");
       await getTodaysRecord(date);
       setSearchName("");
@@ -169,9 +175,12 @@ function AdminRecord() {
       "정말 삭제하시겠습니까?",
       async () => {
         try {
-          const res = await axios.delete("/api/admin/deleteGameScore", {
-            data: { id: id, date: date },
-          });
+          const res = await axios.delete(
+            `${import.meta.env.VITE_APP_API_URL}/api/admin/deleteGameScore`,
+            {
+              data: { id: id, date: date },
+            }
+          );
 
           if (res.data.success) {
             showAlert("삭제되었습니다.");
