@@ -174,7 +174,29 @@ export async function movePanTo(juso) {
             map.setCenter(coords);     
         }
     })
+}
 
-           
+export async function moveToMyPosition(lat, long) {
+    await loadKakaoSdk();
+    var moveLatLon = new window.kakao.maps.LatLng(lat, long);
+    map.setLevel(3)
+    map.setCenter(moveLatLon);
+
+    const markerContainer = document.createElement("div");
+    markerContainer.className = "myLocation";
+    markerContainer.innerHTML = `
+    `;
+
+    const overlay = new window.kakao.maps.CustomOverlay({
+      content: markerContainer,
+      position: moveLatLon,
+      yAnchor: -0.6,
+    });
+
+    overlay.setMap(map);
+
+    window.kakao.maps.event.addListener(map, 'dragend', function() {   
+      overlay.setMap(null);    
+    });
 }
 

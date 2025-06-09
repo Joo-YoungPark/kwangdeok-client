@@ -9,7 +9,12 @@ import { FaLocationPin } from "react-icons/fa6"; // <FaLocationPin />
 
 import "../../../css/Common.css";
 
-import { initMap, setArcheryPlace, movePanTo } from "../../../utils/map";
+import {
+  initMap,
+  setArcheryPlace,
+  movePanTo,
+  moveToMyPosition,
+} from "../../../utils/map";
 
 const ArcheryPlace = () => {
   // const [keyword, setKeyword] = useState("");
@@ -135,6 +140,17 @@ const ArcheryPlace = () => {
   const movePlace = (name, juso) => {
     movePanTo(juso);
   };
+
+  const goMoveMyLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        moveToMyPosition(position.coords.latitude, position.coords.longitude);
+      },
+      (error) => {
+        console.error("Geolocation 오류:", error);
+      }
+    );
+  };
   return (
     <div className="h-[calc(100vh-124px)] overflow-hidden relative bg-black">
       <div id="map" className="w-full h-full"></div>
@@ -167,6 +183,12 @@ const ArcheryPlace = () => {
           )}
         </div>
       </div> */}
+      <div
+        className="absolute bottom-0 right-0 w-[40px] h-[40px] z-50 bg-white/70 p-[5px] mx-[20px] my-[20px] rounded-full"
+        onClick={goMoveMyLocation}
+      >
+        <div className="bg-[url('/location.png')] z-60 w-full h-full bg-center bg-contain bg-no-repeat cursor-pointer"></div>
+      </div>
 
       {menuVisible && (
         <div
