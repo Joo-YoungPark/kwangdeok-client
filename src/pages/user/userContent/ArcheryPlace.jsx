@@ -152,7 +152,7 @@ const ArcheryPlace = () => {
     );
   };
   return (
-    <div className="h-[calc(100vh-124px)] overflow-hidden relative bg-black">
+    <div className="relative w-full h-[100dvh] overflow-hidden">
       <div id="map" className="w-full h-full"></div>
 
       {!menuVisible && (
