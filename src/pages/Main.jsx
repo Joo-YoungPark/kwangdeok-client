@@ -9,10 +9,12 @@ function MainPage() {
   const navigate = useNavigate();
 
   const LoginSubmit = async (e) => {
+    console.log(`${import.meta.env.REACT_APP_API_URL}`);
+    console.log(`${import.meta.env.VITE_APP_API_URL}`);
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${import.meta.env.REACT_APP_API_URL}/api/login`,
+        `${import.meta.env.VITE_APP_API_URL}/api/login`,
         {
           id,
           password,
