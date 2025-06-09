@@ -1,0 +1,356 @@
+.place_page {
+  height: calc(100vh - 205px);
+  overflow: hidden;
+  position: relative;
+  background-color: black;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.search_btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255);
+  margin: 10px 0 0px 10px;
+  padding: 5px;
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* left_tab */
+.left_area {
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  /* transition: width 0.3s ease; */
+  transition: width ease;
+}
+
+.left_area.collapsed {
+  width: 40px;
+  overflow: hidden;
+}
+
+.left_content {
+  height: 100%;
+  background-color: white;
+  width: 90%;
+  transition: opacity 0.3s ease;
+}
+
+.left_area.collapsed .left_content {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.left_btn {
+  height: 10%;
+  background-color: white;
+  width: 10%;
+  margin: auto;
+  margin-right: 5px;
+  border-radius: 0px 15px 15px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left_btn.collapsed {
+  height: 10%;
+  background-color: white;
+  width: 90%;
+  margin: auto;
+  margin-right: 5px;
+  border-radius: 0px 15px 15px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left_btn .left_icon {
+  width: 30px;
+  height: 30px;
+}
+/* left_tab */
+
+.search_btn .search_icon {
+  width: 40px;
+  height: 40px;
+}
+
+.close_btn_area {
+  height: 25px;
+}
+
+.close_btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #999;
+}
+
+.bg_white {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  margin: 10px 0 30px 10px;
+  padding: 5px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  font-size: 12px;
+  border-radius: 10px;
+  overflow-y: hidden;
+}
+.menu_wrap hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #5f5f5f;
+  margin: 3px 0;
+}
+
+/* 검색 */
+.menu_wrap .option {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+}
+.option input {
+  width: 60%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #4fc3f7;
+  border-radius: 8px;
+  outline: none;
+}
+
+.option button {
+  padding: 5px 9px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: none;
+  background-color: #5a67d8;
+  color: white;
+  margin-left: 10px;
+  cursor: pointer;
+}
+/* 검색 */
+
+.select_area {
+  height: auto;
+  padding: 10px 20px 0px 20px;
+}
+
+.select_area select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #4fc3f7;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.select_area form {
+  text-align: center;
+}
+
+.select_area button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #5a67d8;
+  color: white;
+  cursor: pointer;
+}
+
+.archery_list {
+  max-height: 340px;
+  width: 230px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.archery_item {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 5px 0;
+}
+
+.archery_header {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.place_icon_wrapper {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.place_icon {
+  width: 100%;
+  height: 100%;
+  color: #f44336;
+}
+
+.place_index {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.place_name {
+  font-weight: bold;
+  font-size: 18px;
+  padding-bottom: 3px;
+  color: #333;
+  cursor: pointer;
+}
+
+.place_address {
+  font-size: 16px;
+  color: #3a3a3a;
+  margin: 4px 0;
+}
+
+.place_info {
+  font-size: 16px;
+  color: #3a3a3a;
+  margin: 2px 0;
+}
+
+.places_list li {
+  list-style: none;
+}
+.places_list .item {
+  position: relative;
+  border-bottom: 1px solid #888;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 65px;
+}
+.places_list .item span {
+  display: block;
+  margin-top: 4px;
+}
+.places_list .item h5,
+.places_list .item .info {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.places_list .item .info {
+  padding: 10px 0 10px 55px;
+}
+.places_list .info .gray {
+  color: #8a8a8a;
+}
+.places_list .info .jibun {
+  padding-left: 26px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+    no-repeat;
+}
+.places_list .info .tel {
+  color: #009900;
+}
+.places_list .item .markerbg {
+  float: left;
+  position: absolute;
+  width: 36px;
+  height: 37px;
+  margin: 10px 0 0 10px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+    no-repeat;
+}
+.places_list .item .marker_1 {
+  background-position: 0 -10px;
+}
+.places_list .item .marker_2 {
+  background-position: 0 -56px;
+}
+.places_list .item .marker_3 {
+  background-position: 0 -102px;
+}
+.places_list .item .marker_4 {
+  background-position: 0 -148px;
+}
+.places_list .item .marker_5 {
+  background-position: 0 -194px;
+}
+.places_list .item .marker_6 {
+  background-position: 0 -240px;
+}
+.places_list .item .marker_7 {
+  background-position: 0 -286px;
+}
+.places_list .item .marker_8 {
+  background-position: 0 -332px;
+}
+.places_list .item .marker_9 {
+  background-position: 0 -378px;
+}
+.places_list .item .marker_10 {
+  background-position: 0 -423px;
+}
+.places_list .item .marker_11 {
+  background-position: 0 -470px;
+}
+.places_list .item .marker_12 {
+  background-position: 0 -516px;
+}
+.places_list .item .marker_13 {
+  background-position: 0 -562px;
+}
+.places_list .item .marker_14 {
+  background-position: 0 -608px;
+}
+.places_list .item .marker_15 {
+  background-position: 0 -654px;
+}
+.pagination {
+  margin: 10px auto;
+  text-align: center;
+}
+.pagination a {
+  display: inline-block;
+  margin-right: 10px;
+}
+.pagination .on {
+  font-weight: bold;
+  cursor: default;
+  color: #777;
+}
