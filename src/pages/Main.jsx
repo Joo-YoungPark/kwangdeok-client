@@ -9,6 +9,7 @@ function MainPage() {
   const navigate = useNavigate();
 
   const LoginSubmit = async (e) => {
+    console.log(`${import.meta.env.VITE_APP_API_URL}`);
     e.preventDefault();
     try {
       const res = await axios.post(
@@ -16,6 +17,9 @@ function MainPage() {
         {
           id,
           password,
+        },
+        {
+          withCredentials: true,
         }
       );
 

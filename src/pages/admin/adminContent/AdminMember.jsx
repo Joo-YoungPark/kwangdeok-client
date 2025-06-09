@@ -233,7 +233,7 @@ function AdminMember() {
         <table className="w-full border text-sm text-center">
           <thead className="bg-gray-100">
             <tr>
-              <th className="py-2">
+              <th className="py-2 border-r">
                 <input
                   type="checkbox"
                   onChange={(e) => {
@@ -243,18 +243,18 @@ function AdminMember() {
                   }}
                 />
               </th>
-              <th>이름</th>
-              <th>사원번호</th>
-              <th>직책</th>
-              <th>우궁/좌궁</th>
-              <th>평시수</th>
+              <th className="border-r">이름</th>
+              <th className="border-r">사원번호</th>
+              <th className="border-r">직책</th>
+              <th className="border-r">우궁/좌궁</th>
+              <th className="border-r">평시수</th>
               <th>상세</th>
             </tr>
           </thead>
           <tbody>
             {members.map((m) => (
               <tr key={m.member_id} className="border-t">
-                <td>
+                <td className="border-r">
                   <input
                     type="checkbox"
                     checked={checked.includes(m.member_id)}
@@ -267,11 +267,11 @@ function AdminMember() {
                     }}
                   />
                 </td>
-                <td>{m.name}</td>
-                <td>{m.member_no}</td>
-                <td>{m.role}</td>
-                <td>{m.handle}</td>
-                <td>{m.avg_score}</td>
+                <td className="border-r">{m.name}</td>
+                <td className="border-r">{m.member_no}</td>
+                <td className="border-r">{m.role}</td>
+                <td className="border-r">{m.handle}</td>
+                <td className="border-r">{m.avg_score}</td>
                 <td>
                   <button
                     onClick={() => viewMonth(m.member_id)}

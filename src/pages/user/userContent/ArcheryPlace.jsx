@@ -26,7 +26,22 @@ const ArcheryPlace = () => {
 
     // 시도 불러오기
     getSidoList();
+    // 전국 활터 리스트
+    getPlaceAllList();
   }, []);
+
+  const getPlaceAllList = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/api/user/getArcheryList`
+      );
+      if (res.data.success) {
+        setArcheryPlace(res.data.result); // map.js
+      }
+    } catch (err) {
+      console.error("회원 정보 불러오기 실패:", err);
+    }
+  };
 
   // 검색
   const searchSubmit = async (e) => {
@@ -50,7 +65,6 @@ const ArcheryPlace = () => {
         }
       );
       if (res.data.success) {
-        console.log(res.data.result);
         setArcheryList(res.data.result);
         setArcheryPlace(res.data.result); // map.js
       }

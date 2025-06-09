@@ -35,7 +35,7 @@ var map = '';
 var markers = [];
 
 
-export async function initMap(containerId, center = { lat: 37.326509, lng: 126.817503 }, level = 7) {
+export async function initMap(containerId, center = { lat: 36.533762, lng: 128.005222 }, level = 13) {
   await loadKakaoSdk();
 
   const container = document.getElementById(containerId);
@@ -56,15 +56,15 @@ export async function initMap(containerId, center = { lat: 37.326509, lng: 126.8
   map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
 
   // 확대/축소 컨트롤
-  const zoomControl = new window.kakao.maps.ZoomControl();
-  map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+  // const zoomControl = new window.kakao.maps.ZoomControl();
+  // map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
 
 
   return map;
 }
 
-export async function setArcheryPlace(list) {
 
+export async function setArcheryPlace(list) {
   await loadKakaoSdk();
 
   if (!Array.isArray(list) || list.length === 0) {
@@ -72,11 +72,13 @@ export async function setArcheryPlace(list) {
     return;
   }
 
+  const geocoder = new window.kakao.maps.services.Geocoder();
+  const bounds = new window.kakao.maps.LatLngBounds();
+  const coordsList = [];
+
   markers.forEach((m) => m.setMap(null));
   markers = [];
 
-  const geocoder = new window.kakao.maps.services.Geocoder();
-  const bounds = new window.kakao.maps.LatLngBounds();
   let geocodedCount = 0;
 
   list.forEach((place) => {
@@ -85,44 +87,77 @@ export async function setArcheryPlace(list) {
     geocoder.addressSearch(place.juso, (result, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
         const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
-
-        const markerContainer = document.createElement("div");
-        markerContainer.className = "kakao-marker";
-        markerContainer.innerHTML = `
-            <div class="kakao-marker-pin">
-                <div class="kakao-marker-number">${place.rownum}</div>
-            </div>
-            <div class="kakao-marker-label">${place.archery_name}</div>
-        `;
-
-        const overlay = new window.kakao.maps.CustomOverlay({
-            content: markerContainer,
-            position: coords,
-            yAnchor: -0.6,
-        });
-        overlay.setMap(map);
-
-        window.kakao.maps.event.addListener(map, 'zoom_changed', function () {
-            const level = map.getLevel();
-            const labels = document.querySelectorAll(".kakao-marker-label");
-
-            labels.forEach(label => {
-                label.style.display = level >= 9 ? "none" : "inline-block";
-            });
-        });
-
-        markers.push(overlay);
+        coordsList.push({ place, coords });
         bounds.extend(coords);
-    
       } else {
         console.warn(`주소 변환 실패: ${place.juso}`);
       }
 
       geocodedCount++;
-      if (geocodedCount === list.length && !bounds.isEmpty()) {
-        map.setBounds(bounds);
+      if (geocodedCount === list.length) {
+        renderMarkers(coordsList); // 모든 좌표 변환 후 마커 렌더링
+        if (!bounds.isEmpty()) map.setBounds(bounds);
       }
     });
+  });
+
+  // 줌 변경 시 마커 다시 그림
+  window.kakao.maps.event.addListener(map, 'zoom_changed', () => {
+    renderMarkers(coordsList);
+  });
+}
+
+function renderMarkers(dataList) {
+  // 기존 마커 제거
+  markers.forEach((m) => m.setMap(null));
+  markers = [];
+
+  const level = map.getLevel();
+  let scaleName = "";
+
+  if (level <= 13 && level >= 11) {
+    scaleName = "kakao-marker-small";
+  } else if (level <= 10 && level >= 8) {
+    scaleName = "kakao-marker-medium";
+  } else if (level <= 7 && level >= 0) {
+    scaleName = "kakao-marker-large";
+  }
+
+  dataList.forEach(({ place, coords }) => {
+    const markerContainer = document.createElement("div");
+    markerContainer.className = scaleName;
+    markerContainer.innerHTML = `
+      <div class="kakao-marker-pin">
+        <div class="kakao-marker-number">${place.rownum}</div>
+      </div>
+      <div class="kakao-marker-label">${place.archery_name}</div>
+    `;
+
+    const overlay = new window.kakao.maps.CustomOverlay({
+      content: markerContainer,
+      position: coords,
+      yAnchor: -0.6,
+    });
+
+    overlay.setMap(map);
+    markers.push(overlay);
+
+    const pinElement = markerContainer.querySelector(".kakao-marker-pin");
+    const labelElement = markerContainer.querySelector(".kakao-marker-label");
+
+    if (pinElement) {
+      pinElement.addEventListener("click", (e) => {
+        e.stopPropagation();
+        movePanTo(`${place.juso}`)
+      });
+    }
+
+    if (labelElement) {
+      labelElement.addEventListener("click", (e) => {
+        e.stopPropagation();
+        movePanTo(`${place.juso}`)
+      });
+    }
   });
 }
 

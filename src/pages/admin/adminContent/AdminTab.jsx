@@ -44,7 +44,7 @@ function AdminTab({ layout }) {
               }`}
             onClick={() => tab.path && navigate(`/admin/${tab.path}`)}
           >
-            <img src={tab.icon} alt={tab.label} className="w-5 h-5 mb-[2px]" />
+            <img src={tab.icon} alt={tab.label} className="w-4 h-4 mb-[2px]" />
             <div>{tab.label}</div>
           </div>
         );

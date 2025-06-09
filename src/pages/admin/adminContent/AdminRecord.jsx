@@ -330,7 +330,7 @@ function AdminRecord() {
               <tr>
                 <th className="py-2 px-4 border-r">날짜</th>
                 <th className="py-2 px-4 border-r">이름</th>
-                <th className="py-2 px-4">시수</th>
+                <th className="py-2 px-4 border-r">시수</th>
                 <th className="py-2 px-4">삭제</th>
               </tr>
             </thead>
@@ -339,7 +339,7 @@ function AdminRecord() {
                 <tr key={index} className="text-center border-t text-sm">
                   <td className="py-2 px-4 border-r">{i.game_date}</td>
                   <td className="py-2 px-4 border-r">{i.name}</td>
-                  <td className="py-2 px-4">{i.avg_score}</td>
+                  <td className="py-2 px-4 border-r">{i.avg_score}</td>
                   <td className="py-2 px-4">
                     <button
                       onClick={() => removeScoreData(i.member_id, i.game_date)}
