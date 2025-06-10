@@ -121,6 +121,8 @@ function renderMarkers(dataList) {
     scaleName = "kakao-marker-medium";
   } else if (level <= 7 && level >= 0) {
     scaleName = "kakao-marker-large";
+  }else {
+    scaleName = "kakao-marker-none"
   }
 
   dataList.forEach(({ place, coords }) => {

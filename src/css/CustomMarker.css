@@ -100,6 +100,22 @@
   text-overflow: ellipsis;
 }
 
+.kakao-marker-none {
+  display: none;
+}
+
+.kakao-marker-none .kakao-marker-pin {
+  display: none;
+}
+
+.kakao-marker-none .kakao-marker-number {
+  display: none;
+}
+
+.kakao-marker-none .kakao-marker-label {
+  display: none;
+}
+
 .myLocation {
   width: 18px;
   height: 18px;
