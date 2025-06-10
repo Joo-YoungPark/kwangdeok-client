@@ -152,8 +152,8 @@ const ArcheryPlace = () => {
     );
   };
   return (
-    <div className="h-[calc(100dvh-124px)] overflow-hidden relative bg-black">
-      <div id="map" className="w-full h-full"></div>
+    <>
+      <div id="map" className="w-full h-full bg-black"></div>
 
       {!menuVisible && (
         <div className={styles["search_btn"]} onClick={openMenuWrap}>
@@ -184,7 +184,7 @@ const ArcheryPlace = () => {
         </div>
       </div> */}
       <div
-        className="absolute bottom-7 right-4 w-[40px] h-[40px] z-50 bg-white/70 p-[5px] rounded-full"
+        className="absolute bottom-20 right-4 w-[40px] h-[40px] z-50 bg-white/70 p-[5px] rounded-full"
         onClick={goMoveMyLocation}
       >
         <div className="bg-[url('/location.png')] z-60 w-full h-full bg-center bg-contain bg-no-repeat cursor-pointer"></div>
@@ -299,7 +299,7 @@ const ArcheryPlace = () => {
           {/* <div className={styles["pagination"]} id="pagination"></div> */}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 function UserMain() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col pb-16 md:pb-0">
+    <div className="flex flex-col h-[100dvh]">
       <Header />
 
       {/* PC: 상단 탭 */}
@@ -13,7 +13,7 @@ function UserMain() {
       </div>
 
       {/* 콘텐츠 */}
-      <main className="flex-grow">
+      <main className="relative flex-1">
         <Outlet />
       </main>
 

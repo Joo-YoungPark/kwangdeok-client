@@ -18,9 +18,9 @@ function UserTab({ layout }) {
 
   return (
     <div
-      className={`w-full z-10 bg-white ${
+      className={`w-full z-10 bg-white h-[51px] ${
         layout === "top"
-          ? "flex mt-5 border-b border-gray-300 h-[51px] static"
+          ? "flex mt-[20px] border-b border-gray-300  static"
           : "fixed bottom-0 flex justify-around border-t border-gray-300 shadow-[0_-1px_5px_rgba(0,0,0,0.05)]"
       }`}
     >

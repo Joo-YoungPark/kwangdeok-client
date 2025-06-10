@@ -47,8 +47,8 @@ const Header = () => {
   };
 
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md">
-      <h2 className="text-xl font-bold text-gray-800">
+    <header className="flex h-[60px] items-center justify-between px-4 py-3 bg-white shadow-md">
+      <h2 className="text-xl  font-bold text-gray-800">
         광덕정 시수관리 시스템
       </h2>
 

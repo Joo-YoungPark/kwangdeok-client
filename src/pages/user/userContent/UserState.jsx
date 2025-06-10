@@ -136,7 +136,7 @@ function UserStat() {
     setEndDate(e.target.value);
   };
   return (
-    <div className="w-full p-6 bg-white rounded-xl shadow space-y-6">
+    <div className="w-full p-6 bg-white space-y-6">
       {/* 기간 선택 */}
       <div className="flex flex-wrap items-center gap-2 text-gray-700 text-base font-medium">
         <span>기간 :</span>
