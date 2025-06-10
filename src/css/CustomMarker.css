@@ -116,6 +116,38 @@
   display: none;
 }
 
+.info_container {
+  width: 220px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 12px 14px;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  z-index: 55;
+}
+
+.info_container .infoName {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.info_container .infoDetail {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.info_container .infoDetail span {
+  font-weight: bold;
+  color: #555;
+  margin-right: 4px;
+}
+
 .myLocation {
   width: 18px;
   height: 18px;

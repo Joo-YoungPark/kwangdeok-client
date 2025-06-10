@@ -147,10 +147,37 @@ function renderMarkers(dataList) {
     const pinElement = markerContainer.querySelector(".kakao-marker-pin");
     const labelElement = markerContainer.querySelector(".kakao-marker-label");
 
+    let currentInfoOverlay = null;
+
     if (pinElement) {
       pinElement.addEventListener("click", (e) => {
         e.stopPropagation();
         movePanTo(`${place.juso}`)
+
+        if (currentInfoOverlay) {
+          currentInfoOverlay.setMap(null);
+          currentInfoOverlay = null;
+        }
+
+        const infoContainer = document.createElement("div");
+        infoContainer.className = "info_container";
+        infoContainer.innerHTML = `
+        <div class="infoName">${place.juso}</div>
+        <div class="infoDetail"><span>과녁 수 : </span>${place.target_count ? place.target_count : "-"}</div>
+        <div class="infoDetail"><span>방향 : </span>${place.direction ? place.direction : "-"}</div>
+        `;
+       
+        const info = new window.kakao.maps.CustomOverlay({
+          content: infoContainer,
+          position: coords,
+          yAnchor: 1.6,
+        });
+        info.setMap(map);
+        currentInfoOverlay = info;
+
+        window.kakao.maps.event.addListener(map, 'dragend', function() {   
+          info.setMap(null);    
+        });
       });
     }
 
