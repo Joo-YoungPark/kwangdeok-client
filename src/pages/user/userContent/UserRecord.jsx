@@ -230,8 +230,8 @@ function UserRecord() {
     </button>
   ));
   return (
-    <>
-      <div className="w-full overflow-x-hidden mx-auto py-4 bg-white shadow space-y-4">
+    <div className="w-full h-[calc(100vh-110px)] overflow-y-auto">
+      <div className="w-full overflow-x-hidden py-4 bg-white shadow space-y-4">
         {/* 월 이동 */}
         <div className="flex justify-center items-center gap-4 text-xl font-semibold text-gray-800">
           <button
@@ -428,7 +428,7 @@ function UserRecord() {
           onCancel={alertInfo.onCancel}
         />
       )}
-    </>
+    </div>
   );
 }
 

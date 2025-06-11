@@ -11,7 +11,7 @@ function ProtectedRoute({ children }) {
 
   if (!isAuthenticated) {
     alert("로그인 세션이 만료되었습니다. 다시 로그인 해주세요.");
-    return <Navigate to="/login" replace state={{ from: location }} />;
+    return <Navigate to="/" replace state={{ from: location }} />;
   }
 
   return children;

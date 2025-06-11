@@ -136,7 +136,7 @@ function UserStat() {
     setEndDate(e.target.value);
   };
   return (
-    <div className="w-full p-6 bg-white space-y-6">
+    <div className="w-full h-[calc(100vh-110px)] overflow-y-auto p-6 bg-white space-y-6">
       {/* 기간 선택 */}
       <div className="flex flex-wrap items-center gap-2 text-gray-700 text-base font-medium">
         <span>기간 :</span>
