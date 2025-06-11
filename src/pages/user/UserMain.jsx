@@ -13,7 +13,8 @@ function UserMain() {
       </div>
 
       {/* 콘텐츠 */}
-      <main className="relative flex-1">
+      {/* <main className="relative flex-1"> */}
+      <main className="relative flex-1 pb-[51px] md:pb-0">
         <Outlet />
       </main>
 

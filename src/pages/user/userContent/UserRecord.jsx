@@ -230,7 +230,7 @@ function UserRecord() {
     </button>
   ));
   return (
-    <div className="w-full h-[calc(100vh-110px)] overflow-y-auto">
+    <div className="w-full min-h-screen overflow-y-auto">
       <div className="w-full overflow-x-hidden py-4 bg-white shadow space-y-4">
         {/* 월 이동 */}
         <div className="flex justify-center items-center gap-4 text-xl font-semibold text-gray-800">
@@ -340,7 +340,7 @@ function UserRecord() {
         </div>
       </div>
       {/* 기록 테이블 */}
-      <div className="mt-6 bg-white shadow-md rounded-xl p-2">
+      <div className="mt-6 bg-white overflow-y-auto shadow-md rounded-xl p-2">
         <div className="w-full flex flex-wrap items-center gap-3 p-3 rounded-lg">
           {/* 총시수 */}
           <div className="flex items-center text-medium text-gray-600 min-w-[140px]">
@@ -411,16 +411,17 @@ function UserRecord() {
             +
           </button>
         </div>
+        {/* 저장 버튼 */}
+        <div className=" flex justify-center mx-4 p-4">
+          <button
+            onClick={saveRecord}
+            className="w-20 h-10 bg-orange-300 text-white rounded-[5px] hover:bg-orange-400 text-lg font-bold shadow-sm transition"
+          >
+            저장
+          </button>
+        </div>
       </div>
-      {/* 저장 버튼 */}
-      <div className="flex justify-center mx-4 p-4">
-        <button
-          onClick={saveRecord}
-          className="w-20 h-10 bg-orange-300 text-white rounded-[5px] hover:bg-orange-400 text-lg font-bold shadow-sm transition"
-        >
-          저장
-        </button>
-      </div>
+
       {alertInfo.show && (
         <AlertModal
           message={alertInfo.message}
